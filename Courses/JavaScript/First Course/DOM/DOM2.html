@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM2</title>
+</head>
+<body>
+    
+    <ol id= 'lista'>
+        <li>primer elemento</li>
+        <li>segundo elemento</li>
+
+
+    </ol>
+
+    <script>
+
+        //CREAR NODO
+        var elemento = document.createElement("li");
+        //CREAR TEXTO DEL NODO
+        var contenido = document.createTextNode("Nuevo Texto");
+        //AGREGAMOS TEXTO AL NODO
+        elemento.appendChild(contenido);
+        //AGREGAR NODO AL DOCUMENTO 
+        var padre = document.getElementsByTagName("li")[0].parentNode;
+        var primerElemento = document.getElementsByTagName("li")[0];
+        var hijo = document.getElementsByTagName("li")[0];
+        //padre.appendChild(elemento); //Lo agrega al final del hijo donde apunta
+        //primerElemento.appendChild(elemento); //Lo agrega después del primer li,
+        //padre.insertBefore(elemento, hijo); //lo agrega antes del primer elemento li
+ 
+ </script>
+</body>
+</html>

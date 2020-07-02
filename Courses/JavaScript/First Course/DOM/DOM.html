@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+   
+    <h1 id="titulo"> Titulo de nuestra web</h1>
+    <div id ="subtitulo">
+
+    </div>
+
+  
+    <p>Parrafo 1</p>
+    <p id="segundo">Parrafo 2</p>
+    <p>Parrafo 3</p>
+
+    <script>
+
+        //AGREGAR CONTENIDO AL HTML ACCEDIENDO AL DOCUMENTO HTML
+        //Formas de acceder a los elementos del HTML
+        var elementosP = document.getElementsByTagName("p"); //Por etiqueta
+        document.write(elementosP[0].innerHTML + "<br><br>"); //inner para acceder al texto en si
+        var elementosP2 = document.getElementById("segundo"); //Por id
+        document.write(elementosP2.innerHTML + "<br><br>"); 
+
+
+        //AGREGAR CONTENIDO AL HTML DESDE JS
+        //CREACIÓN DE NODOS
+        var elemento = document.createElement("h2");
+        //CREACIÓN DE UN NODO DE TEXTO
+        var contenido = document.createTextNode("Este es nuestro subtitulo");
+        //AÑADIR TEXTO AL NODO
+        elemento.appendChild(contenido);
+        //AGREGAR ATRIBUTOS AL ELEMENTO
+        elemento.setAttribute("align", "center");
+        //AGREGAR ELEMENTO AL DOCUMENTO
+        document.getElementById("subtitulo").appendChild(elemento);
+        //document.body.appendChild(elemento);
+
+
+    </script>
+</body>
+</html>

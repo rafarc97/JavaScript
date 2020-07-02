@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+</head>
+<body>
+
+    <!--<button id= "boton">Boton</button>-->
+    <a id = 'boton' href="http://github.com/rafarc97">Rafa Rodriguez GitHub</a>
+    <input type="text" id = "input">
+
+    <script>
+        /*Esta es al funcion autoinvocada que se debe de poner en 
+        todo lso programas para proteger nuestras variables*/
+        (function(){
+
+            var saludo = function(e){
+                alert("saludo" + " " + e.type);
+                e.preventDefault(); //con esto no nos envía a la pag. web
+            }
+
+            var saludo2 = function(){
+                alert("saludo2");
+            }
+
+            var saludo3 = function(){
+                alert("saludo3");
+            }
+
+            //esto imprime el tipo de evento que se está ejecutando (click)
+            var saludo4 = function(e){
+                alert("Este evento es de tipo: " + e.type);
+             //con e.target nos devuelve el tipo de etiqueta (boton)
+            
+            }
+            var boton = document.getElementById('boton');
+            //boton.addEventListener("click", saludo); //cuando clickas en boton se ejecuta saludo
+            //boton.addEventListener("click", saludo2);//cuando clickas en boton se ejecuta saludo2
+            //boton.removeEventListener("click", saludo2); //elimina el saludo2
+            
+            var  input = document.getElementById("input"); 
+            //input.addEventListener("focus", saludo3); //cuando clickas dentro del cuadro se ejecuta saludo3
+            //input.addEventListener("blur", saludo3); //cuando clickas fuera del cuadro se ejecuta saludo3
+            //input.addEventListener("change", saludo3); //cuando escribes en el cuadro y clic fuera se ex saludo3
+            //boton.addEventListener("click", saludo4);
+
+        }())
+    </script>
+
+    
+</body>
+</html>

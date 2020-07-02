@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atributos DOM</title>
+
+
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background:  #dddddd;
+            display: inline-block;
+            margin-right: 10px;
+            border: 1px solid #AAAAAA;
+        }
+
+
+        .azul{
+            background-color: #0074D9;
+            border: 1px solid #000;
+        }
+
+
+        .rojo{
+            background-color: #FF4136;
+            border: 1px solid #000;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+    <section id = "contenedor">
+        <a id = "enlace" href="http://www.github.com/rafarc97">Rafa Rodriguez GitHub</a>
+        <div class=""></div>
+        <div class=""></div>
+
+    </section>
+
+
+    <script>
+
+        //CREAR NODO
+        var elemento = document.createElement("div");
+
+
+        var padre = document.getElementById("contenedor");
+        var referencia = document.getElementsByTagName("div")[0];
+
+        //AÑADIR ATRIBUTO
+        elemento.setAttribute("class", "azul");
+
+        //document.body.appendChild(elemento); //añade elemento al final del body
+
+        //por ello hacemos lo siguiente
+        padre.insertBefore(elemento, referencia); //añade elemento antes del primer div
+
+        //elemento.setAttribute("class", "rojo"); //cambiamos el atributo del div elemento
+        //elemento.setAttribute("id", "nuevodiv");// le añade un atributo id a elemento div
+        //elemento.id = "tercer id"; //otra manera de cambiar los atributos id
+        //elemento.className = "azul"; //otra forma de cambiar los atributos class
+        //document.getElementById("enlace").href = "http://www.google.com"; //cambiar el atributo
+        //referencia de una etiqueta enlace
+
+    </script>
+</body>
+</html>

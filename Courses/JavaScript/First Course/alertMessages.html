@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scope</title>
+</head>
+<body>
+
+
+
+    <script>
+
+       (function(){
+
+             //SCOPE: ÁMBITO DE LAS VARIABLES
+        var variableGlobal = "Esta es una variable Global";
+
+var miFuncion = function(){
+    //solo puede ser accedida desde su propia función o una anidada
+    var variableLocal = "Esta es local";
+    //podemos declarar una var global dentro de una funcion así:
+    variableGlobal2 = "Esta es OTRA var global";
+    //está si se puede modificar desde cualquier sitio por ser global
+    variableGlobal = "Se ha modificado la var global";
+    alert(variableGlobal);
+}
+
+var miOtraFuncion = function(){
+    var variableLocal = "Esta es Local";
+
+    var FuncionLocal = function(){
+        //Si descomentamos el alert imprime "Esta es Local", pq js trabaja con
+        //niveles, primero busca en el lvl más bajo y va subiendo, pero js no busca
+        //la var hasta encontrarlo bajando lvls, solo subiendo
+        //var variableLocal = "Esta es variable local, dentro de funcionLocal";
+        alert(variableLocal);
+    }
+    FuncionLocal();
+}
+
+
+miFuncion();
+miOtraFuncion();
+
+
+       }())
+
+
+    </script>
+
+
+
+
+
+</body>
+</html>

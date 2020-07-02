@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ol id="etiqueta">
+        <li id = "primero">Primer elemento</li>
+        <li>Segundo Elemento</li>
+    </ol>
+
+
+    <script>
+
+        //MODIFICAR TEXTO DE UNA ETIQUETA
+        var primerElemento = document.getElementById("primero");
+        //primerElemento.innerHTML = "Nuevo Texto <i>Rafa <i>"; //Cambia lo que está en li id
+        //primerElemento.textContent = "Nuevo Texto2 <i>Rafa<i>";//igual pero no interpreta HTML 
+
+        //MODIFICAR TEXTO + ATRIBUTOS
+        primerElemento.innerHTML = "Nuevo Texto <i class=\"foo\">Rafa Rodriguez</i>";
+
+
+
+        //CREO NODO Y TEXTO
+        var elemento = document.createElement("li"),
+            contenido = document.createTextNode("Nuevo Texto");
+        //AGREGO TEXTO AL NODO
+        elemento.appendChild(contenido);
+
+        //REEMPLAZAR ELEMENTOS
+        var padre = document.getElementById("etiqueta");
+        var referencia = document.getElementsByTagName("li")[0];
+        //padre.replaceChild(elemento, referencia); //Reemplaza elemento por lo que hay en referencia
+        
+        
+        //BORRAR ELEMENTOS
+        //padre.removeChild(referencia) //eliminamos primer elemento
+        
+    </script>
+</body>
+</html>

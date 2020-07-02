@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso JS 2020 ACTUALIZADO</title>
+</head>
+<body>
+    <h1>Fundamentos JavaScript</h1>
+
+
+    <!--
+    var: VARIABLE GLOBAL
+    -Aunque se defina en un bloque inferior, este tendrá
+    el mismo valor que le demos en bloques superiores con
+    variables que se llamen igual. 
+    -Es considerada una MALA PRÁCTICA usarlos tanto en el lado 
+    del servidor/backend (usando nodejs) como en el 
+    cliente/frontend (javascript).
+    
+
+    let: VARIABLE LOCAL (del bloque donde se definió)
+-->
+
+<!--
+    const: CONSTANTES
+    -Variables cuyo valor no cambiará durante el flujo del 
+    programa (para tipos de datos PRIMITIVOS). Para tipos
+    datos COMPUESTOS podemos cambiar el valor de esas
+    constantes, puesto que se está accediendo a la 
+    referencia de esos valores, en lugar de al valor en sí
+    (como ocurre con los tipos de datos PRIMITIVOS).
+    -NO se pueden declarar sin darle valores (SI se permite 
+    con var/let).
+-->
+
+<!-- 
+    CONCLUSIÓN:
+
+    A pesar de esta característica de JS con la variable de tipo const
+    en tipos de datos COMPUESTOS, deberemos de usar SIEMPRE let para
+    cuando trabajemos con variables que cambien sus valores y const
+    cuando no cambien de valores.
+
+    Por otro lado, siempre que podamos usar let/var, mejor usar let por el
+    problema que presenta con respecto a los ámbitos.
+-->
+
+    <script>
+
+/*
+        //Cadenas de Texto Strings
+        let nombre = "Rafa";
+        let apellido = 'Rodríguez';
+        let completo = "Rafa Rodríguez Calvente";
+        let completo2 = "Rafa     Rodríguez     Calvente";
+        let saludo = new String("Hola Mundo");
+
+        console.log(
+            nombre,
+            apellido,
+            completo,
+            saludo,
+            nombre.length,
+            apellido.length,
+            completo.length,
+            saludo.length,
+            nombre.toUpperCase(), //pasa a mayúscula
+            apellido.toLocaleLowerCase(), //pasa a minúscula
+            apellido.includes("odr"),
+            '\n', //true si está, false si no
+            completo2.trim(), //eliminar espacios en blanco con tam > 1 
+            completo.split(" "), //separa por comas las palabras del string
+            `Hola mi nombre es ${nombre} ${apellido}`, 
+            //Template String: muy útil para añadir código html de manera dinámica
+            `
+
+            Con las template String
+            podemos crear varias líneas 
+            con cadenas de texto
+
+
+            `
+        )
+
+
+
+
+
+
+
+
+        //Numbers
+        let a = 2
+        let b = new Number(1)
+        let c = 7.19
+        let d = "5.6"
+
+        console.log(    
+            a,
+            b,
+            c.toFixed(1),
+            c.toFixed(5),
+            parseInt(c),
+            parseFloat(c),
+            typeof(c),
+            typeof(d),
+            d+a,
+            parseInt(d) + a,
+            parseFloat(d) + a,
+            Number.parseInt(d) + a, //tb posible de esta manera
+            Number.parseFloat(d) + a
+            
+            )
+            //La parte débil de JS con respecto a los números es que traen
+            //pocos tipos de datos numéricos para trabajar con ellos
+
+
+
+
+
+
+
+         
+            //Boolean
+            let verdadero = true
+            let falso = false
+            let v = Boolean(true)
+            let f = Boolean(false)
+
+            console.log(
+                verdadero,
+                falso,
+                typeof(verdadero),
+                typeof(falso),
+                //Hay valores que tienden a v y otros a f
+                //Estos valores los podemos encontrar en Truthy/Falsy
+                //en la web oficial de Mozilla Developer
+                //Algunos de estos son los siguientes:
+                Boolean(4),
+                Boolean(0),
+                Boolean(""),
+                Boolean(" ")
+                
+                )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                //undefined, null && NaN (Not a Number)
+
+                //undefined y null indican que la variable está vacía
+
+
+
+                //undefined:valor que asigna JS a la variable cuando no 
+                //se sabe su valor
+                let indefinida 
+
+                //null: valor nulo que le asignamos nosotros los programadores
+                //a la variable
+                let nula = null
+
+                let noEsUnNumero = "hola" * 3.7
+
+
+                console.log(
+                    indefinida, //imprime undefined
+                    nula, //imprime null
+                    noEsUnNumero //imprime NaN
+                    )
+
+
+
+                
+
+  
+                //FUNCIONES
+
+                function estoEsUnaFuncion(){
+                    console.log("Uno")
+                    console.log("Dos")
+                    console.log("Tres")
+                }
+
+                estoEsUnaFuncion()
+
+                function unaFuncionQueDevuelveValor(){
+                    console.log("Uno")
+                    //return 19       //Se retorna 19 y se sale de la función
+                    console.log("Dos")
+                    console.log("Tres")
+                    return "La función ha retornado una cadena de texto"
+                }
+
+                let valorDeFuncion = unaFuncionQueDevuelveValor()
+                console.log(valorDeFuncion)
+
+                function saludando(nombre,edad = 23){
+                    console.log(`Hola mi nombre es ${nombre} y tengo ${edad} años`)
+                }
+
+                saludando()
+                
+                funcionDeclarada()
+
+                function funcionDeclarada(){
+                    console.log(`Esto es una función declarada y puede invocarse 
+                    en cualquier parte de nuestro código incluso antes de que la 
+                    función sea declarada`) //Esto es por el hoisting de JS
+                }
+
+                funcionDeclarada()
+
+
+                //Para funciones expresadas se suele usar const y no let
+                //Esto se conoce como función anónima
+                //Este tipo de funciones son muy usadas junto a los 
+                //frameworks ANGULAR, REACT y VUE
+                const functionExpresada = function(){
+
+                }
+
+                //No se puede acceder a la función expresada antes de ser declarada.
+                //Esta es la gran diferencia con las funciones declaradas
+                //de manera habitual
+                //Usar las funciones expresadas nos ayuda a no tener errores de
+                //ejecución de la función
+
+                //functionExpresada2() 
+
+                //Otra forma de declarar una función anónima
+                const functionExpresada2 = () => {
+                    console.log("Esto es una función expresada")
+                }   
+
+                functionExpresada2()
+
+
+                //Arreglos
+                //es declarado tanto con const como con let
+                const aa = []
+                const bb = [1,true,"Hola",["A","B","C"]]
+                const cc = Array.of("X","Y","Z",9,8,7) //otro modo
+                const dd = Array(20).fill(false)
+                const ee = new Array(1,2,3,false)
+
+                console.log(
+                    aa,
+                    bb,
+                    bb.length,
+                    bb[2],
+                    bb[3][1],
+                    cc,
+                    dd,
+                    ee,
+                    ee.push("Hola"),
+
+                )
+
+                bb.forEach(function(el,index) {
+                    console.log(`<li id="${index}"> ${el} </li>`)
+                })
+
+
+
+
+
+                //Objetos
+                // es declarado tanto con const como con let
+
+                const bbb = {
+
+                }
+
+                const ccc = new Object()
+
+                //Todo lo declarado dentro del objeto son atributos,
+                //excepto la función que es un método
+                const rafa = {
+                    nombre: "Rafa",
+                    apellido: "Rodríguez",
+                    edad: 23,
+                    pasatiempos: ["Programar", "Correr"],
+                    soltero: false,
+                    contacto: {
+                        email: "rafaelrodriguezcalvente@gmail.com",
+                        twitter: "@_rafarguez"
+                    },
+                    saludar:function() {
+                        console.log("Hola :)")
+                    },
+                    decirMiNombre:function(){
+                        console.log(`Hola me llamo ${this.nombre}`)
+                    }
+                }
+                
+                console.log(
+                    bbb,
+                    ccc,
+                    rafa,
+                    rafa["nombre"],
+                    rafa["contacto"],
+                    rafa.contacto.email, //esta notación es + utilizada que la de corchetes
+                    rafa.pasatiempos[0]
+                    
+                )
+                rafa.saludar()
+                rafa.decirMiNombre()
+
+                console.log(Object.keys(rafa)) // crear un array de atributos
+                //del objeto
+                console.log(Object.values(rafa)) //igual pero muestra los valores
+                console.log(rafa.hasOwnProperty("nombre")); //true o false si existe
+                //dicho atributo en el objeto rafa
+                console.log(rafa.hasOwnProperty("nacimiento"));
+
+
+
+
+
+
+
+
+                //OPERADORES
+                //*Destacar solo el oeprador === que compara además del valor,
+                //el tipo de datos
+
+
+
+
+
+
+
+
+
+                //CONDICIONALES
+                //*Destacar este tipo:
+
+                let edad = 19
+                let eresMayor = (edad >= 18) ? "Eres Mayor de Edad" : "Eres menor"
+
+                //otra forma más legible:
+                let eresMayor2 = (edad >= 18) 
+                    ? "Eres Mayor de Edad" 
+                    : "Eres menor"
+
+                console.log(eresMayor,eresMayor2)
+
+
+
+
+
+
+
+
+
+
+                //BUCLES
+                //Destacar este tipo de bucle for:
+
+                //for IN es para objetos de JS
+                for (propiedad in rafa){ //en el for no sirve la notacion del punto
+                    //si no que hay que hacerlo con los corchetes
+                    //console.log(`Key: ${propiedad}, Value: ${rafa.propiedad}`) da error
+                    console.log(`Key: ${propiedad}, Value: ${rafa[propiedad]}`)
+                }
+
+                //Y este otro:
+                //for OF es para arreglos
+
+                let numeros = [1,2,3,4,5]
+                for (const elemento of numeros){
+                    console.log(elemento)
+                }
+
+
+
+
+
+
+
+
+
+
+                //MANEJO DE ERRORES
+                //un uso práctico y real del finally podría ser
+                //a la hora de trabajar con bases de datos desde
+                //un fichero
+
+                //También es útil para controlar los errores en nuestro
+                //programa
+
+                try{
+                    console.log("Se agrega el código a evaluar")
+                    M //ponemos error intencionado
+                    console.log("Segundo código a evaluar")
+                }catch(error){
+                    console.log("Captura cualquier error surgido o lanzado en el try")
+                    console.log(error)
+                }finally{
+                    console.log("Este bloque se ejecuta siempre al final")
+                }
+                 
+
+                //otro ejemplo donde personalizamos los errores
+                //existen distintos tipos de errors en JS
+
+                try{
+                    let numero = 'a'
+                    if(isNaN(numero)){
+                        throw new Error("El caracter introducido no es un Número")
+                    }
+                    console.log(numero * numero)
+                }catch(error){
+                    console.log(`Se produjo el error: ${error}`)
+                }finally{
+
+                }
+
+
+
+
+
+
+
+
+
+                //BREAK && CONTINUE
+
+                const numeritos = [1,2,3,4,5,6,7,8,9]
+
+                for (let i = 0; i < numeritos.length; i++){
+                    if(i === 5){
+                        break
+                    }
+                console.log(numeritos[i])
+                }
+
+                for (let i = 0; i < numeritos.length; i++){
+                    if (i === 5)
+                        continue;
+                    console.log(numeritos[i])
+                }
+
+
+
+
+
+
+
+
+ 
+
+                //DESTRUCTURACIÓN: muy utilizado en REACT, ANGULAR, etc...
+
+                //sin destructuración
+                let numbers = [1,2,3]
+                let uno = numbers[0],
+                    dos = numbers[1],
+                    tres = numbers[2]
+
+                console.log(uno,dos,tres)
+                //con destructuración
+                const [one,two,three] = numbers
+                console.log(one,two,three)
+
+                //objetos con destructuración
+                const people = {
+                    name: "Rafa",
+                    surname: "Rodríguez",
+                    age: 23
+                }
+
+                let {name,surname,age} = people
+                console.log(name,surname,age)
+
+
+
+
+
+
+
+
+
+                //OBJETOS LITERALES
+
+                let nombre_perro = "Xena"
+                edad_perro = 4
+
+                const perro = {
+                    nombre:nombre_perro,
+                    edad:edad_perro,
+                    ladrar:function(){
+                        console.log("guau guau!!")
+                    }
+                }
+
+                console.log(perro)
+                perro.ladrar()
+
+                //este nuevo método simplifica el asignar valores a atributos
+                //de nuestro objeto y métodos
+                const dog = {
+                    nombre_perro, 
+                    edad_perro,
+                    raza: "American",
+                    ladrar(){
+                        console.log("guau guau guau!!!")
+                    }
+                }
+
+                console.log(dog)
+                dog.ladrar()
+
+
+
+
+
+
+
+
+
+
+
+                //PARÁMETROS REST && SPREAD OPERATOR
+                //muy utilizado en ANGULAR, REACT, VUE...
+
+                //es un concepto que permite agregar virtualmente parámetros 
+                //infinitos en una funcion o dentro de una variable
+
+                function sumar(a,b,...c){
+                    let resultado = a+b
+                    c.forEach(function(n){
+                        resultado += n
+                    })
+                    return resultado
+                }
+
+
+            
+                //podemos meterle un tercer, cuarto o n parámetros (si queremos)
+                console.log(sumar(3,4,2,5,3))
+
+                const arr1 = [1,2,3,4,5],
+                    arr2 = [6,7,8,9,0]
+
+                console.log(arr1,arr2)
+                const arr3 = [...arr1,...arr2] //se unen los dos en uno
+                console.log(arr3)
+
+
+
+
+                //ARROW FUNCTIONS (funciones flechas)
+                //capacidad de hacer muy expresivas las funciones
+                //capturan el objeto this del contexto en el que se encuentren
+
+                //podemos omitir las llaves si tiene una sola línea de codigo
+                const hablar = (nombre) => console.log(`Hola ${nombre}`)
+                hablar("Rafa")
+
+                const estamosSumando = (a,b) => a+b
+                console.log(estamosSumando(3,4))
+
+                const funcionDeVariasLineas = () => {
+                    console.log(
+                        "Uno",
+                        "Dos",
+                        "Tres")
+                }
+
+                funcionDeVariasLineas()
+
+
+                const numerosss = [1,2,3,4,5]
+
+                numerosss.forEach((elem,index) => {
+                    console.log(`${elem} está en la pos ${index} `)
+                })
+
+
+                function gato() {
+                    console.log(this)
+                }
+
+                const ardilla = {
+                    nombre: "Pedro",
+                    ladrar: () =>{
+                        //capturan el objeto this del contexto en el que se encuentren
+                        //es decir capturan el objeto window
+                        //por esto tenemos que tener cuidado con esto
+                        console.log(this)
+                    }
+                }
+
+                //Por eso es mejor esta forma de expresar las funciones en objetos literales
+                //para que reconozcan el objeto en el contexto donde se encuentran
+                const raton = {
+                    nombre: "Juan",
+                    ladrar (){
+                        console.log(this)
+                    }
+                }
+
+                gato()
+                ardilla.ladrar()
+                raton.ladrar()
+
+
+
+
+                
+
+
+
+
+
+
+
+
+                //PROTOTIPOS
+                //POO basada en prototipos (no en clases)
+                //La programación orientada a objetos en JS es distinta
+                //a otros lenguajes como Java, C++, etc...
+
+
+
+                const animal = {
+                    nombre: "Snoopy",
+                    sonar(){
+                        console.log("Hago sonidos porque estoy vivo!")
+                    }
+                }
+
+                const animal2 = {
+                    nombre: "Lola Bunny",
+                    sonar(){
+                        console.log("Hago sonidos porque estoy vivo!")
+                    }
+                }
+
+                console.log(animal)
+                console.log(animal2)
+
+
+                //Función constructora
+                function Animal(nombre,genero){
+                    //Atributos
+                    this.nombre = nombre
+                    this.genero = genero
+                    //Métodos
+                    this.sonar = function(){
+                        console.log("Hago sonidos porque estoy vivo!!")
+                    }
+                }
+
+                const snoopy = new Animal("Snoopy","Macho"),
+                    lolaBunny = new Animal("Lola Bunny","Hembra")
+
+                console.log(snoopy,lolaBunny)
+
+                //Si vamos a la consola podemos comprobar la diferencia
+                //entre crear una instancia de un tipo de objeto y un objeto
+                //tal cual. Las instancias del tipo de objeto tendrán definido
+                //dentro del prototipo solamente el constructor
+
+
+
+                //Función constructora
+                function Animall(nombre,genero){
+                    //Atributos
+                    this.nombre = nombre
+                    this.genero = genero
+                }
+
+                //Métodos agregados al prototipo de la función constructora
+                //Esto mejorará mucho el rendimiento y el espacio en memoria
+                //de nuestra aplicación
+                //Cada vez que generemos un nuevo objeto solo se le atribuye 
+                //los atributos nombre y genero, no así el método sonar.
+                //De esta forma ahora tendremos que abrir la pestaña prototype
+                //para ver esta función sonar, ya no colgará de la instancia, si
+                //no del prototype
+                Animall.prototype.sonar = function(){
+                    console.log("Hago sonidos porque estoy vivo!!")
+                }
+                
+                const cocodrilo = new Animall("Pepe","Macho")
+                console.log(cocodrilo)
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+                //HERENCIA PROTOTÍPICA
+                
+                function Perro(nombre,genero,tamanio){
+                    this.super = Animall
+                    this.super(nombre,genero)
+                    this.tamanio = tamanio
+                }
+
+                //Perro está heredando de animal
+                Perro.prototype = new Animal()
+                Perro.prototype.constructor = Perro
+
+                //Podemos sobreescribir los métodos del prototipo
+                //padre en el hijo
+                Perro.prototype.sonar = function(){
+                    console.log("Soy un perro y mi sonido es un ladrido")
+                }
+
+                //Método exclusivo de Perro:
+                Perro.prototype.ladrar = function(){
+                    console.log("Guau guau !!")
+                }
+
+                //El prototipo de este objeto es Animall (lo podemos
+                //ver en la consola, mientras que el eobjeto snoopy 
+                //Animall es de prototipo Object (objeto nativo de JS) 
+                //porque PperroXena hereda de Animall y snoopy de Object)
+                const perroXena = new Perro("Xena","Hembra","Mediano")
+
+                console.log(perroXena)
+
+                Perro.prototype.ladrar()
+                Perro.prototype.sonar()
+                snoopy.ladrar()
+
+
+
+
+
+
+
+
+
+
+
+
+                //CLASES (simplifican el concepto de prototipo, pero
+                //de igual forma, no debemos olvidar que internamente,
+                //JS lleva una POO basada en prototipos)
+ 
+                class Animal{
+                    constructor(nombre,genero){
+                        this.nombre = nombre
+                        this.genero = genero
+                    }
+                    //Métodos
+                    sonar(){
+                        console.log("Hago sonidos porque estoy vivo")
+                    }
+                    saludar(){
+                        console.log(`Hola me llamo ${this.nombre}`)
+                    }
+                }
+
+                const mimi = new Animal("Mimi","Hembra"),
+                    scooby = new Animal("Scooby","Macho")
+                console.log(mimi,scooby)
+                mimi.sonar()
+                mimi.saludar()
+                scooby.sonar()
+                scooby.saludar()
+
+
+                class Perro extends Animal{
+                    constructor(nombre,genero,tamanio){
+                        super(nombre,genero)
+                       this.tamanio = tamanio
+                    }
+                    sonar(){
+                        console.log("Soy un perro y mi sonido es un ladrido")
+                    }
+                    ladrar(){
+                        console.log("Guau Guau!!")
+                    }
+                }
+
+                const xena = new Perro("Xena","Hembra","Mediano")
+
+                console.log(xena)
+                console.log(xena.saludar(),xena.sonar(),xena.ladrar())
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //MÉTODOS ESTÁTICOS, GETTERS Y SETTERS
+                //en JS NO existen las clases privadas, todas las clases son
+                //públicas.
+
+ 
+                class Animal{
+                    constructor(nombre,genero){
+                        this.nombre = nombre
+                        this.genero = genero
+                    }
+                    //Métodos
+                    sonar(){
+                        console.log("Hago sonidos porque estoy vivo")
+                    }
+                    saludar(){
+                        console.log(`Hola me llamo ${this.nombre}`)
+                    }
+                }
+
+                class Perro extends Animal{
+                    constructor(nombre,genero,tamanio){
+                        super(nombre,genero)
+                       this.tamanio = tamanio
+                       this.raza = null
+                    }
+                    static sonar(){
+                        console.log("Soy un perro y mi sonido es un ladrido")
+                    }
+                    static ladrar(){
+                        console.log("Guau Guau!!")
+                    }
+                    //le ponemos get delante para indicarle la función de ese método
+                    //los métodos get y set JS los trata como atributos especiales, no
+                    //como métodos
+                    get getRaza(){
+                        return this.raza
+                    }
+                    set setRaza(raza){
+                        this.raza = raza
+                    }
+                }
+
+                //Los métodos estáticos pueden ejecutarse sin necesidad de instanciar
+                //una clase
+                Perro.sonar()
+
+
+                xena = new Perro("Xena","Hembra","Mediano")
+                console.log(xena.getRaza)
+                xena.setRaza = "American"
+                console.log(xena.getRaza)
+ 
+              
+
+
+
+
+
+
+
+
+
+
+
+                //OBJETO CONSOLE
+                console.log(console)
+                console.error("Esto es un error")
+                console.warn("Esto es un aviso")
+                console.info("Esto es un mensaje informativo")
+                console.log("Un registro de lo que ha pasado en nuestra app")
+
+                let namee = "Rafa"
+                let surnamee = "Rodríguez"
+                let agee = 23
+
+                console.log(namee)
+                console.log(surnamee)
+                console.log(agee)
+                //también podemos imprimirlo todo en una sola línea
+                console.log(namee,surnamee,agee)
+                //también podemos interporlar
+                console.log(`Hola me llame ${namee} 
+                y tengo ${agee} años`)
+                //podemos usar los comodines:
+                console.log(`Hola mi nombre es %s %s y tengo %s años`,namee,surnamee,agee)
+                //Limpiar la consola
+                //console.clear()
+                console.log(window)
+                //Muestra todo el contenido HTML 
+                console.log(document)
+                //dir muestra todos los métodos, prop. y constructores del objeto window
+                console.dir(window)
+                console.dir(document)
+
+                //console.clear()
+
+                console.group("Esto es un curso")
+                console.log("Curso de JS")
+                console.log("Curso de Node.js")
+                console.groupEnd()
+
+                //igual que group pero con una pestaña de despliegue
+                console.groupCollapsed("Esto es un curso")
+                console.log("Curso de JS")
+                console.log("Curso de Node.js")
+                console.groupEnd()
+
+
+                //Para representarlo a través de una tabla
+                console.table(Object.entries(console))
+                //Para ordernarlos por orden alfabético
+                console.table(Object.entries(console).sort())
+
+                const num = [1,2,3,4,5],
+                    vocales = ["a","e","i","o","u"]
+                
+                console.table(num)
+                console.table(vocales)
+
+                const perrito = {
+                    nombre:"xena",
+                    raza:"American",
+                    color:"cafe"
+                }
+
+                console.table(perrito)
+
+
+                //console.clear()
+
+                //Para hacer pruebas de rendimiento podemos hacer uso de time
+                //La cadena de time es como una especie de bandera/etiqueta
+                //que debe ser igual en time y timeEnd 
+                console.time("Cuanto tiempo tarda mi código")
+                const arreglo = Array(10000000)
+
+                for(let i = 0; i < arreglo.length; i++){
+                    arreglo[i] = i
+                }
+                console.timeEnd("Cuanto tiempo tarda mi código")
+
+                //lo siguiente es útil para contabilizar por ejemplo para contar
+                //cuantas veces un usuario pulso un botón, etc...
+                for(let i = 0; i < 20; i++){
+                    console.count("código for")
+                    console.log(i)
+                }
+
+
+                //console.clear()
+
+
+                //asert
+                let x = 1,
+                    y = 2,
+                    pruebaXY = "Se espera que X siempre sea menor que Y"
+                console.assert(x<y,{x,y,pruebaXY})
+
+                //da mensaje de error porque no se cumple la condición que comprueba
+                //el método assert
+                x = 3
+                console.assert(x<y,{x,y,pruebaXY})
+
+                //console.clear()
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                
+               
+                //OBJETO DATE
+                //imprime el día actual, hora y usos horarios (meridianos)
+                console.log(Date())
+
+                let fecha = new Date()
+                console.log(fecha)
+                //imprime día del mes
+                console.log(fecha.getDate())
+                //imprime día de la semana
+                console.log(fecha.getDay())
+                //imprime mes del año
+                console.log(fecha.getMonth())
+                //imprime el año
+                console.log(fecha.getFullYear())
+                //imprime la hora actual
+                console.log(fecha.getHours())
+                //imprime los minutos actual
+                console.log(fecha.getMinutes())
+                //imprime los segundos actual
+                console.log(fecha.getSeconds())
+                //imprime los milisegundos actual
+                console.log(fecha.getMilliseconds())
+                //Otros formatos de recoger la fecha
+                console.log(fecha.toString())
+                console.log(fecha.toDateString())
+                console.log(fecha.toLocaleString())
+                console.log(fecha.toLocaleDateString())
+                console.log(fecha.toLocaleTimeString())
+                //uso horario en el que nos encontramos
+                //sale -120 porque está en minutos (60*(-2) = -120)
+                console.log(fecha.getTimezoneOffset())
+                //imprime la hora de Londres (meridiano 0) en formato 24h
+                console.log(fecha.getUTCDate())
+                //lo mismo pero en formato 12h
+                console.log(fecha.getUTCHours())
+                //imprime cuantos segundos desde el 1 de enero de 1970
+                //se conoce como la fecha "timestamp". Es muy utilizado
+                //p. ej cuando vamos a realizar algo con un registro en una
+                //Bases de Datos
+                //Para trabajar con fechas también se suele utilizar mucho,
+                //es decir, para restar, sumar fechas, etc...
+                
+                
+                //Una librería muy útil en JS para trabajar con fechas
+                //es "Moment.js"
+                console.log(Date.now())
+
+                //para ver la fecha en la que nací
+                let cumpleRafa = new Date(1997,2,23)
+                console.log(cumpleRafa)
+                //console.clear()
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //OBJETO MATH
+
+                console.log(Math)
+                console.log(Math.PI)
+                console.log(Math.abs(-7.8))
+                //redondear hay 3 métodos
+                //hacia arriba
+                console.log(Math.ceil(7.2))
+                //hacia abajo
+                console.log(Math.floor(7.8))
+                //hacia lo que deba
+                console.log(Math.round(7.49))
+                console.log(Math.sqrt(81))
+                console.log(Math.pow(2,4))
+                //devuelve -1 si es negativo o 1 si positivo
+                console.log(Math.sign(-2))
+                console.log(Math.sign(2))
+                //generar aleatorio
+                console.log(Math.random())
+                //genera aleatorio entre 0 y 1000
+                console.log(Math.random() * 1000)
+                console.log(Math.round(Math.random() * 1000))                
+
+                //console.clear()
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+                //ALERT, CONFIRM y PROMPT
+                //métodos útiles para interactuar con el usuario
+                window.alert("Esto es una alerta")
+                //Depende lo que pulsemos devuelve true o false
+                window.confirm("¿Acepta?")
+                //Permite ingresar un valor
+                window.prompt("Esto permite ingresar datos")
+
+                let alerta = window.alert("Esto es una alerta")
+                let confirmacion = window.confirm("¿Acepta?")
+                let aviso = window.prompt("Esto permite ingresar datos")
+
+                //almacena undefined
+                console.log(alerta)
+                //si pulsamos acpetar almacena true, si cancelar, false
+                console.log(confirmacion)
+                //si escribimos algo, ese algo se almacena en aviso
+                //si escribimos algo pero damos a cancelar almacena null
+                console.log(aviso)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //EXPRESIONES REGULARES
+                //muy utilizados en aplicaciones web de JS
+
+                //es una secuencia de carac que forman un patron de busqueda
+                //y que principalmente es utlizado para la bsuqueda en cadenas
+                //de texto
+
+                //no es algo exclusivo de JS, cualquier tecnología que sea
+                //lenguaje de programación tiene essta implementación de
+                //las expresiones regulares.
+
+                //Nos podría servir por ejemplo para evaluar que un correo
+                //es válido (aceptación de letras, números y caract en concreto)
+
+                //en wikipedia podemos ver como se construyen las expresiones regulares
+                //no podemos aprendernos todo de memoria, porque estas expresiones
+                //son muchas, y por otro lado en google podremos encontrar estas
+                //expresiones ya creadas por otros programadores, p. ej, "validaicones
+                //para validar dni" ò "patrones para validar matrícula de coche".
+
+                let cadena = "lorem ipsum lorem"
+                //le podemos añadir banderas a nuestras expresiones regulares
+                //por ejemplo la bandera "g" de global hace que dentro de la cadena
+                //busque todas las coincidencias de lorem, de no ponerla encontraría
+                //la primera y se pararía
+                let expReg = new RegExp("Lorem","g")
+                //imprime false porque encuentra la palabra
+                console.log(expReg.test(cadena))
+                //devuelve un arreglo donde indica la pos donde encontró la 
+                //coincidencia
+                console.log(expReg.exec(cadena))
+                //para que no sea sensible a mayusculas/minusculas, usamos la 
+                //bandera "i"
+                let expReg2 = new RegExp("Lorem","ig")
+                //imprime true porque esta expresion no es sensible may/min
+                console.log(expReg2.test(cadena))
+                //Otra manera de hacer lo mismo que la línea anterior
+                //Este formato es más utilizado por ser más simple
+                let expReg3 = /Lorem/ig
+                console.log(expReg3.test(cadena))
+                //Buscamos si existe un digito del 0 al 9, eso se representa
+                //con "\d"
+                let expReg4 = /\d/ig
+                //imprime false porque no lo encuentra
+                console.log(expReg4.test(cadena))
+                //para buscar un numero de veces en concreto unos caracteres
+                //si se encuentra repetida entre 1 y 3 veces devuelve true
+                let expReg5 = /lorem{1,3}/ig
+                console.log(expReg5.test(cadena))
+                //si se encuentra repetida al menos 3 veces, devuelve false
+                let expReg6 = /lorem{3,}/ig
+                console.log(expReg6.test(cadena))
+
+                //console.clear()
+
+                
+                
+                
+                
+
+
+                
+
+
+
+
+
+
+                //FUNCIONES ANÓNIMAS Y AUTOEJECUTABLES
+                //patrón muy utilizado para la ejecución de código
+
+                //este es uno de los pocos casos donde tenemos que usar ";"
+                //para separar nuestro código
+
+                (function (){
+                   console.log("Mi primera funcion anonima autoejecutada");
+                })();
+                
+                
+                //Un ejemplo muy práctico sería cuando realicemos la implementación
+                //de un carrousel de imagenes y estemos constantemente usando
+                //los métodos ggetElementById, etc... para acceder al código HTML
+                //pues en estos casos en lugar de estar escribiendo constantemente
+                //la palabra document, podremos usar la abreviatura "d" con las funciones
+                //anonimas y autoejecutables y así simplificar el código
+                //y la facilidad de programación 
+                (function (d,w,c){
+                    console.log("Mi segunda funcion anonima autoejecutada");
+                    console.log(d);
+                    console.log(w);
+                    console.log(c);
+                    c.log("Este es un console.log");
+                })(document,window,console);
+
+                //La forma vista hasta ahora es la version clásica de 
+                //declarar una función de este tipo, pero
+                //Existen otras versiones para este tipo de funciones
+
+
+                //La Crockford (JavaScript The Good Parts)
+                ((function(){
+                    console.log("Versión Clockford");
+                })());
+
+
+                //Version unaria
+                +function(){
+                    console.log("Versión unaria");
+                }();
+
+
+                //Facebook
+                !function(){
+                    console.log("Versión Facebook");
+                };
+
+*/
+    </script>
+</body>
+</html>

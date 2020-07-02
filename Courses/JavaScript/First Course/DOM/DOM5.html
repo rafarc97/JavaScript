@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .thumb{
+            width: 200px;
+            transition: 300ms all ease;
+        }
+
+        .grade{
+            width: 400px;
+        }
+
+        .titulo{
+            border: 1px solid navy;
+            background-color: #ccc;
+            padding: 10px;
+        }
+
+        .tituloGrande{
+            font-size: 60px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id = "encabezado" class=""> Soy un encabezado \^.^/</h1>
+
+    <script>
+
+        var encabezado = document.getElementById("encabezado");
+        //encabezado.className = "titulo tituloGrande"; //le añade dos estilos 
+        encabezado.className = encabezado.className.replace("tituloGrande", ""); //reemplaza titulo grande por nada para eliminarlo
+        //encabezado.style.color = "red"; //agrega el estilo css dinamicamente desde aquí
+        //encabezado.style.backgroundColor = "black";
+        //encabezado.style.paddingTop = "100px"; 
+
+    </script>
+</body>
+</html>

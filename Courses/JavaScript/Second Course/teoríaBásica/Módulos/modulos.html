@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulos en JS</title>
+</head>
+<body>
+    <h1>Modulos en JS</h1>
+    <!--El script de JS se suele poner al final del body
+    para que al usuario no le tarde en cargar la pag,
+    puesto que el archivo js es bloqueante-->
+    <!--Debemos indicar en type que es de tipo modulo-->
+    <script src="../js/modulos.js" type="module"></script>
+    <!--Para los navegadores que no soporten Modulos ES6: -->
+    <!--El atributo nomodule se pone para que en cuyo caso no
+    se soporte dicha característica, se ignore el script de arriba
+    y no se duplique el código de ES5 y ES6-->
+    <!--<script src="js/no-modulos.js" nomodule></script>-->
+</body>
+</html>
